@@ -1,0 +1,11 @@
+source,target,weight
+Houston,Dallas,240
+Dallas,Galveston,270
+Dallas,College Station,180
+Austin,Dallas,195
+Austin,College Station,100
+Galveston,Houston,50
+San Antonio,College Station,160
+College Station,Dallas,180
+College Station,Galveston,140
+Galveston,College Station,140
