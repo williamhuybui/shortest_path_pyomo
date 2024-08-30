@@ -11,9 +11,9 @@ from src.solver import find_shortest_path_glpk
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 server = app.server
 
-example_1_df = pd.read_csv("example_2_dg.csv")
-example_2_df = pd.read_csv("example_1_dg.csv")
-example_3_df = pd.read_csv("example_3_dg.csv")
+example_1_df = pd.read_csv("data/example_2_dg.csv")
+example_2_df = pd.read_csv("data/example_1_dg.csv")
+example_3_df = pd.read_csv("data/example_3_dg.csv")
 
 app.layout = dbc.Container(
     [
