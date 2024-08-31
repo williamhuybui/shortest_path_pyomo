@@ -11,10 +11,16 @@ from solver import find_shortest_path_glpk
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 server = app.server
 
-example_1_df = pd.read_csv("src/data/example_2_dg.csv")
-example_2_df = pd.read_csv("src/data/example_1_dg.csv")
-example_3_df = pd.read_csv("src/data/example_3_dg.csv")
-
+example_1_df = pd.read_csv("data/example_2_dg.csv")
+example_2_df = pd.read_csv("data/example_1_dg.csv")
+example_3_df = pd.read_csv("data/example_3_dg.csv")
+# conda env export --no-builds > environment.yml
+# dash-bootstrap-components==1.6.0
+# dash-core-components==2.0.0
+# dash-cytoscape==1.0.2
+# gunicorn
+# dash-tools
+# Pyomo==6.8.0
 app.layout = dbc.Container(
     [
         dbc.Container(
