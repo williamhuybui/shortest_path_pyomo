@@ -2,6 +2,7 @@ name: myenv
 channels:
   - defaults
 dependencies:
+  - gunicorn
   - ca-certificates=2024.7.2
   - glpk=4.65
   - gmp=6.2.1
@@ -18,3 +19,5 @@ dependencies:
   - wheel=0.43.0
   - xz=5.4.6
   - zlib=1.2.13
+  - pip:
+    - gunicorn==20.1.0
