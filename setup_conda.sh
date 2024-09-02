@@ -1,19 +1,19 @@
 #!/bin/bash
 
-# Install Miniconda
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-bash Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/miniconda
-
-# Initialize Conda
-export PATH="$HOME/miniconda/bin:$PATH"
-source $HOME/miniconda/etc/profile.d/conda.sh
-conda init bash
-
-# Update or create the environment from the environment.yml file
+# Create or update the Conda environment
 conda env update --file environment.yml
 
 # Activate the environment
 source activate myenv
 
-# # Install additional Python packages from requirements.txt
-# pip install -r requirements.txt
+# Install pip packages
+pip install -r requirements.txt
+
+# Check if gunicorn is installed
+if ! command -v gunicorn &> /dev/null; then
+    echo "gunicorn could not be found, installing..."
+    pip install gunicorn
+fi
+
+# Run gunicorn
+gunicorn app:app --bind 0.0.0.0:$PORT
