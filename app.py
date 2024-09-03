@@ -5,22 +5,17 @@ import pandas as pd
 import dash_bootstrap_components as dbc
 from dash import dash_table
 from cyto_components import cytograph, csv_to_graph_elements
-from solver import find_shortest_path_glpk
+# from solver import find_shortest_path_glpk
+from solver import find_shortest_path_ortools
 
 # Initialize the Dash app
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 server = app.server
 
-example_1_df = pd.read_csv("data/example_2_dg.csv")
-example_2_df = pd.read_csv("data/example_1_dg.csv")
-example_3_df = pd.read_csv("data/example_3_dg.csv")
-# conda env export --no-builds > environment.yml
-# dash-bootstrap-components==1.6.0
-# dash-core-components==2.0.0
-# dash-cytoscape==1.0.2
-# gunicorn
-# dash-tools
-# Pyomo==6.8.0
+example_1_df = pd.read_csv(r"data/example_2_dg.csv")
+example_2_df = pd.read_csv(r"data/example_1_dg.csv")
+example_3_df = pd.read_csv(r"data/example_3_dg.csv")
+
 app.layout = dbc.Container(
     [
         dbc.Container(
@@ -420,7 +415,8 @@ def update_shortest_path_color(source, target, data):
 def find_shortest_path(n_clicks, source, target, data):
     if n_clicks is not None and n_clicks > 0:
         try:
-            path, weight = find_shortest_path_glpk(pd.DataFrame(data), source, target)
+            # path, weight = find_shortest_path_glpk(pd.DataFrame(data), source, target)
+            path, weight = find_shortest_path_ortools(pd.DataFrame(data), source, target)
             message = f"Shortest Path: {path}, Total Weight: {weight}"
             graph_elelements = csv_to_graph_elements(data, source, target, path)
         except Exception as e:
